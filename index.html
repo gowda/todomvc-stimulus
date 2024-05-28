@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stimulus • TodoMVC</title>
+    <link rel="stylesheet" href="node_modules/todomvc-common/base.css" />
+    <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="todoapp">
+      <header class="header" data-controller="editor">
+        <h1>todos</h1>
+        <input
+          class="new-todo"
+          placeholder="What needs to be done?"
+          data-editor-target="text"
+          data-action="keyup.enter->editor#save keyup.esc->editor#clear"
+          autofocus
+        />
+      </header>
+      <!-- This section should be hidden by default and shown when there are todos -->
+      <section class="main">
+        <input id="toggle-all" class="toggle-all" type="checkbox" />
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list" data-controller="todo-list">
+          <div data-todo-list-target="placeholder"></div>
+          <template id="todo-list-item" data-todo-list-target="itemTemplate">
+            <li data-controller="todo-list-item" data-todo-list-item-editing-class="editing">
+              <div class="view">
+                <input
+                  class="toggle"
+                  type="checkbox"
+                  data-todo-list-item-target="completedCheckbox"
+                  data-action="click->todo-list-item#toggleCompleted"
+                />
+                <label data-todo-list-item-target="text" data-action="dblclick->todo-list-item#openEditor"
+                  >A template for todo element</label
+                >
+                <button
+                  class="destroy"
+                  data-todo-list-item-target="deleteButton"
+                  data-action="click->todo-list-item#remove"
+                ></button>
+              </div>
+              <div class="editor" data-controller="editor">
+                <input
+                  class="edit"
+                  value="A template for todo element"
+                  data-todo-list-item-target="editInput"
+                  data-editor-target="text"
+                  data-action="keyup.enter->editor#save keyup.esc->todo-list-item#closeEditor"
+                />
+              </div>
+            </li>
+          </template>
+        </ul>
+      </section>
+      <!-- This footer should be hidden by default and shown when there are todos -->
+      <footer class="footer" data-controller="footer">
+        <!-- This should be `0 items left` by default -->
+        <span class="todo-count" data-controller="todo-count">
+          <strong data-todo-count-target="count">0</strong> item left
+        </span>
+        <!-- Remove this if you don't implement routing -->
+        <ul class="filters" data-controller="filters">
+          <li>
+            <a href="#/" data-filters-target="all">All</a>
+          </li>
+          <li>
+            <a href="#/active" data-filters-target="active">Active</a>
+          </li>
+          <li>
+            <a href="#/completed" data-filters-target="completed">Completed</a>
+          </li>
+        </ul>
+        <!-- Hidden if no completed items are left ↓ -->
+        <button class="clear-completed" data-controller="clear-completed" data-action="click->clear-completed#clear">
+          Clear completed
+        </button>
+      </footer>
+    </section>
+    <footer class="info">
+      <p>Double-click to edit a todo</p>
+      <!-- Remove the below line ↓ -->
+      <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
+      <!-- Change this out with your name and url ↓ -->
+      <p>Created by <a href="https://github.com/gowda">Gowda</a></p>
+      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+    </footer>
+    <!-- Scripts here. Don't remove ↓ -->
+    <script src="node_modules/todomvc-common/base.js"></script>
+    <script src="dist/bundle.js"></script>
+  </body>
+</html>
