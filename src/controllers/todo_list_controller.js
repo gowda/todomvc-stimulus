@@ -36,7 +36,6 @@ export default class extends Controller {
 
     const todos = allTodos();
     const { hash } = window.location;
-
     todos.forEach((todo) => {
       if (hash === '#/completed' && todo.completed) {
         const template = this.itemTemplateTarget.content.cloneNode(true);
@@ -46,7 +45,7 @@ export default class extends Controller {
         const template = this.itemTemplateTarget.content.cloneNode(true);
         populate(template, todo);
         this.placeholderTarget.prepend(template);
-      } else if (hash === '#/' || hash === undefined) {
+      } else if (hash === '#/' || hash === '') {
         const template = this.itemTemplateTarget.content.cloneNode(true);
         populate(template, todo);
         this.placeholderTarget.prepend(template);
