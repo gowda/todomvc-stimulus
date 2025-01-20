@@ -30,9 +30,9 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "prettier": "^3.4.2",
-    "vite": "^6.0.7"
+    "vite": "^6.0.9"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
